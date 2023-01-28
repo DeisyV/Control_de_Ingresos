@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Base_Datos",
     "\\ControlGastosAppWeb"
   ],
+  "SelectedNode": "\\Base_Datos\\Tablas.sql",
   "PreviewInSolutionExplorer": false
 }
