@@ -11,8 +11,8 @@ namespace WebControlGastos.Controllers
         // GET: Gastos
         public ActionResult Gastos()
         {
-            //return View();
-            return PartialView("~/Views/Gastos/prueba.cshtml");
+            return View();
+            //return PartialView("~/Views/Gastos/prueba.cshtml");
 
         }
     }
