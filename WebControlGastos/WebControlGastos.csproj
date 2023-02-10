@@ -155,6 +155,8 @@
     <Content Include="Content\ControlGastos\images\back_disabled.png" />
     <Content Include="Content\ControlGastos\images\back_enabled.png" />
     <Content Include="Content\ControlGastos\images\back_enabled_hover.png" />
+    <Content Include="Content\Imagenes\balanza.jpg" />
+    <Content Include="Content\Imagenes\bolsa%241.png" />
     <Content Include="Content\Imagenes\deisy.png" />
     <Content Include="Content\ControlGastos\images\forward_disabled.png" />
     <Content Include="Content\ControlGastos\images\forward_enabled.png" />
@@ -163,6 +165,9 @@
     <Content Include="Content\ControlGastos\index.html" />
     <Content Include="Content\ControlGastos\js\custom.js" />
     <Content Include="Content\ControlGastos\js\custom.min.js" />
+    <Content Include="Content\Imagenes\download.png" />
+    <Content Include="Content\Imagenes\images.jpg" />
+    <Content Include="Content\Imagenes\monedas.png" />
     <Content Include="Global.asax" />
     <Content Include="packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\es\System.Web.Mvc.resources.dll" />
     <Content Include="packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\es\System.Web.Mvc.xml" />
@@ -260,6 +265,7 @@
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\vbc.exe" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\VBCSCompiler.exe" />
     <Content Include="packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="Script\Negocio\RegistrarPersona.js" />
     <Content Include="Vendors\bootstrap\dist\css\bootstrap-grid.css" />
     <Content Include="Vendors\bootstrap\dist\css\bootstrap-grid.min.css" />
     <Content Include="Vendors\bootstrap\dist\css\bootstrap-reboot.css" />
@@ -339,6 +345,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GastosController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\RegistrarPersonaController.cs" />
+    <Compile Include="Controllers\ReporteGastosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -359,6 +367,7 @@
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\WebControlGastos.dll.config" />
+    <Content Include="Content\Imagenes\ingresos_egresos_apertura.webp" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -448,6 +457,8 @@
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\VBCSCompiler.exe.config" />
     <Content Include="packages\Microsoft.Web.Infrastructure.1.0.0.0\.signature.p7s" />
     <Content Include="packages\Microsoft.Web.Infrastructure.1.0.0.0\Microsoft.Web.Infrastructure.1.0.0.0.nupkg" />
+    <Content Include="Views\RegistrarPersona\RegistrarPersona.cshtml" />
+    <Content Include="Views\ReporteGastos\ReporteGastos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
