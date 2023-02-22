@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+
 </head>
 
 <body>
@@ -17,16 +17,13 @@
             <div class="row">
                 <div class="form-group col-md-4">
                     <label>Nombre</label>
-                    <select id="ddlDocumento" class="form-control">
+                    <select id="ddlNombreReporte" class="form-control">
                     </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label>Tipo de Reporte</label>
-                    <select id="ddlDocumento" class="form-control">
+                    <select id="ddlDocumentoReporte" class="form-control">
                         <option>---Seleccione---</option>
-                        <option>Diario</option>
-                        <option>Semanal</option>
-                        <option>Mensual</option>
                     </select>
                 </div>
             </div>
@@ -40,11 +37,11 @@
     <div class="card-body" id="SolicitudBusqueda">
         <div class="panel-heading card-header2">
             <h4 class="panel-title">
-                <a class="colorTitulo" data-toggle="collapse" data-parent="#accordion" href="#Solicitud">Tabla Gastos</a>
+                <a class="colorTitulo" data-toggle="collapse" data-parent="#accordion" href="#Solicitud">Tabla Reporte</a>
             </h4>
         </div>
 
-        <table id="tblGastos" class="display" style="width:100%"
+        <table id="tblReporte" class="display" style="width:100%"
                @*data-consulta-personas="@Url.Action("ConsultaPersonas", "Personas")"
                data-eliminar-personas="@Url.Action("EliminarPersonas", "Personas")"*@>
             <thead>
@@ -67,54 +64,86 @@
         </table>
     </div>
 
-    <div class="card-body">
-        <div class="modal fade" id="modal_Reporte" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header kt-lg-10" style="background-color: #0067b2; margin-left: 0px !important;height: 50px; padding-top: 12px;">
-                        <h5 class="modal-title" id="CreaEmprendimientoLabel" style="color: #ffffff">Nuevo Gasto</h5>
-                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div id="modalGastos" class="modal-body m-3">
-                        <div class="card col-md-12">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label>Nombre</label>
-                                    <select id="ddlDocumento" class="form-control">
-                                    </select>
+    @*<div class="card-body">
+            <div class="modal fade" id="modal_Reporte" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header kt-lg-10" style="background-color: #0067b2; margin-left: 0px !important;height: 50px; padding-top: 12px;">
+                            <h5 class="modal-title" id="CreaEmprendimientoLabel" style="color: #ffffff">Nuevo Gasto</h5>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div id="modalGastos" class="modal-body m-3">
+                            <div class="card col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label>Nombre</label>
+                                        <select id="ddlNombreGasto" class="form-control">
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Descripción</label>
+                                        <input type="text" id="txtDescripGasto" class="form-control" maxlength="30" minlength="7" required />
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label>Descripción</label>
-                                    <input type="text" id="txtDescripcion" class="form-control" maxlength="30" minlength="7" required />
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label>Valor</label>
+                                        <input type="number" id="txtValorGasto" class="form-control" maxlength="7" minlength="3" required />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Fecha Compra</label>
+                                        <input type="date" id="txtFechaGasto" class="form-control" required />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label>Valor</label>
-                                    <input type="number" id="txtValor" class="form-control" maxlength="7" minlength="3" required />
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label>Fecha Compra</label>
-                                    <input type="date" id="txtFecha" class="form-control" required />
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group" style="float: right">
-                                    <input type="button" value="Guardar" class="btn btn-primary" id="btnEditarGuardar">
-                                    <button type="button" id="btnCancelarPersonas" class="btn btn-danger closeModal btn-elevate btn-icon-sm  btn-acciones-emprendimiento" data-dismiss="modal"><i class="la la-save"></i>Cancelar</button>
+                                <div class="card-body">
+                                    <div class="form-group" style="float: right">
+                                        <input type="button" value="Guardar" class="btn btn-primary" id="btnEditarGuardar">
+                                        <button type="button" id="btnCancelarPersonas" class="btn btn-danger closeModal btn-elevate btn-icon-sm  btn-acciones-emprendimiento" data-dismiss="modal"><i class="la la-save"></i>Cancelar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>*@
 </body>
-
-
-
-
 </html>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () { // cargo la pantalla por primera vez ejecuta todo lo que tengo configurado
+        CargarTipoReporte();
+    });
+
+    function CargarTipoReporte() {
+        var NombreTabla = "TipoReporte";
+        var URL = "/ReporteGastos/ConsultarParametricas";
+        $.ajax(
+            {
+                type: 'post',
+                data:
+                {
+                    Tabla: NombreTabla
+                },
+                dataType: 'json',
+                url: URL,
+                success: function (data) {
+                    $.each(data, function (index, optionData) {
+                        $("#ddlDocumentoReporte").append("<option value='" + optionData.Value + "'>" + optionData.Text + "</option>");
+                    });
+                },
+                error: function (error) {
+                    console.log("ERROR AL CARGAR PARAMETRICA TipoReporte: " + error);
+                    alert(error.responseText);
+                }
+            }
+        );
+    }
+
+</script>

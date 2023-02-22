@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label>Número De Documento</label>
-                    <input type="text" id="txtnumero" class="form-control" maxlength="20" minlength="10" required />
+                    <input type="text" id="txtnumeroDocu" class="form-control" maxlength="20" minlength="10" required />
                 </div>
             </div>
 
@@ -62,8 +62,8 @@
         </table>
     </div>
 
-    <div class="card-body">
-        <div class="modal fade" id="modal_Personas" tabindex="-1" role="dialog">
+    <div class="card-body">                                                     @*esto de data es para que no se cierre el modal con clic ni esc*@
+        <div class="modal fade" id="modal_Personas" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header kt-lg-10" style="background-color: #0067b2; margin-left: 0px !important;height: 50px; padding-top: 12px;">
@@ -98,6 +98,7 @@
                                 <div class="form-group col-md-6">
                                     <label>Tipo De Documento </label>
                                     <select id="ddlDocumento" class="form-control">
+                                        <option>---Seleccione---</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -124,8 +125,6 @@
                                     <label>Genero</label>
                                     <select id="ddlGenero" class="form-control">
                                         <option>---Seleccione---</option>
-                                        <option>Femenino</option>
-                                        <option>Maculino</option>
                                     </select>
                                 </div>
                             </div>
@@ -142,7 +141,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>Dirección Residencia</label>
-                                    <input type="text" id="txtDireccionResi" class="form-control" required/>
+                                    <input type="text" id="txtDireccionResi" class="form-control" required />
                                 </div>
                             </div>
                             <div class="card-body">
@@ -159,4 +158,72 @@
     </div>
 </body>
 </html>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () { // cargo la pantalla por primera vez ejecuta todo lo que tengo configurado
+        CargarParametricaTipoDoc(); //se carga las unidades parametricas una unica vez, se puede cambiar el nombre y colocar el que quiera
+        CargarGenero();
+        CargarTipoReporte();
+    });
+
+    function CargarParametricaTipoDoc() { //funcion - trabajaremos con  AJAX comunicacion con el js y controladores mediante post o get
+
+        var NombreTabla = "TipoDocumento"; //variable y la tabla de la bd  la que se necesita
+        var URL = "/RegistrarPersona/ConsultarParametricas"; //nos dice cual es nuestro controlador y cual es la funcion a ejecutar en esta peticion
+        //consultarparametricas eso es en el controlador que toca crearlo
+        $.ajax(
+            {
+                type: 'post', //determinar de que tipo es la peticion post o get y se referencia en el controlador que estamos trabajando.(/Index/ConsultarParametricas")
+                data: //datos que se envian viajan tipo json linea 178
+                {
+                    Tabla: NombreTabla // tabla es el parametro que viaja por medio de ella y se tiene que llamar igual en la funcion del controlador
+                },
+                dataType: 'json', //viaja en una anotacion tipo json
+                url: URL, //es lo que se configura arriba el controlador y funcion envia y recibe un json nos vamos para el controlador a realizar la cominicacon del controlador y modelo
+                success: function (data) { //cuando se ejecute es lo que va a retornar data y se mapea abajo
+                    //
+                    $.each(data, function (index, optionData) { //se hace un recorrido y se mapea toda la funcion
+
+                        $("#ddlDocumento").append("<option value='" + optionData.Value + "'>" + optionData.Text + "</option>"); //value es el id y text la descripcion
+                    }); //ddl es igual del id del campo
+                },
+                error: function (error) { //para errores, si sale algun error sale en  la consola y el mensaje
+                    //
+                    console.log("ERROR AL CARGAR PARAMETRICA TipoDocumento: " + error);
+                    //
+                    alert(error.responseText); //salga una ventana emergente en el brouser que se este manejando
+                }
+            });
+    }
+
+    function CargarGenero() {
+        var NombreTabla = "Genero";
+        var URL = "/RegistrarPersona/ConsultarParametricas";
+        $.ajax(
+            {
+                type: 'post',
+                data:
+                {
+                    Tabla: NombreTabla
+                },
+                dataType: 'json',
+                url: URL,
+                success: function (data) {
+                    $.each(data, function (index, optionData) {
+                        $("#ddlGenero").append("<option value='" + optionData.Value + "'>" + optionData.Text + "</option>");
+                    });
+                },
+                error: function (error) {
+                    console.log("ERROR AL CARGAR PARAMETRICA Genero: " + error);
+                    alert(error.responseText);
+                }
+            }
+        );
+    }
+</script>
 
